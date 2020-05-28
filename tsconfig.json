@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./",
+        "sourceMap": true,
+        "declaration": false,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "importHelpers": true,
+        "noImplicitAny": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "noImplicitThis": true,
+        "noImplicitReturns": true,
+        "target": "esnext",
+        "typeRoots": ["node_modules/@types"],
+        "lib": ["ESNext", "dom"]
+    }
+}

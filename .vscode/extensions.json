@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "bierner.lit-html",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ms-vscode.node-debug2",
+        "ms-vscode.js-debug-companion"
+    ]
+}

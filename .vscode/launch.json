@@ -1,0 +1,37 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Dev Server",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}\\node_modules\\rollup\\dist\\bin\\rollup",
+            "env": {
+                "NODE_ENV": "development"
+            },
+            "args": ["-c", "-w"],
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Build Production",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}\\node_modules\\rollup\\dist\\bin\\rollup",
+            "env": {
+                "NODE_ENV": "production"
+            },
+            "args": ["-c"],
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ]
+        }
+    ]
+}
