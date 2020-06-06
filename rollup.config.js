@@ -3,15 +3,19 @@ import del from 'rollup-plugin-delete';
 import html2 from 'rollup-plugin-html2';
 import serve from 'rollup-plugin-serve';
 import strip from '@rollup/plugin-strip';
-import replace from 'rollup-plugin-replace';
+import replace from '@rollup/plugin-replace';
+import memfs from 'rollup-plugin-memory-fs';
 import progress from 'rollup-plugin-progress';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
-import livereload from 'rollup-plugin-livereload';
+import livereload from 'rollup-plugin-livereload-universal';
 import typescript from 'rollup-plugin-typescript2';
 
 const production = process.env.NODE_ENV === 'production';
 const development = process.env.NODE_ENV === 'development';
+
+const memfsPlugin = development && memfs();
+const livereloadPlugin = development && livereload({ reloadEmitter: memfsPlugin });
 
 export default {
     input: 'src/index.ts',
@@ -59,10 +63,13 @@ export default {
         // Injects links to build artifacts into template and outputs it in destination directory
         html2({ template: 'src/index.html' }),
 
-        // Provides automatic page refresh on changes in development environment
-        development && livereload('dist'),
-
         // Serves build artifacts by HTTP in development mode
         development && serve({ historyApiFallback: true, contentBase: ['dist', './'] }),
+
+        // Stores built artifacts in memory
+        memfsPlugin,
+
+        // Provides automatic page refresh on changes in development environment
+        livereloadPlugin,
     ],
 };
